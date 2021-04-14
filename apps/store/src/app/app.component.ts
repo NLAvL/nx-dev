@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { formatRating } from '@bg-hoard/store/util-formatters';
+import { Game } from '@bg-hoard/util-interface';
 
 @Component({
   selector: 'app-root',
@@ -13,5 +14,5 @@ export class AppComponent {
   // games = getAllGames();
 
   constructor(private http: HttpClient) {}
-  games = this.http.get<any[]>('/api/games');
+  games = this.http.get<Game[]>('/api/games');
 }
