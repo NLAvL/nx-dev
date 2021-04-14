@@ -1,16 +1,18 @@
-import { text, number, boolean } from '@storybook/addon-knobs';
+import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { text } from '@storybook/addon-knobs';
 import { HeaderComponent } from './header.component';
 
 export default {
-  title: 'HeaderComponent'
-}
+  title: 'HeaderComponent',
+};
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: []
+    imports: [MatToolbarModule],
   },
   component: HeaderComponent,
   props: {
     title: text('title', ''),
-  }
-})
+  },
+});
