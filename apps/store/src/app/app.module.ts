@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
     RouterModule.forRoot(
       [
         {
-          path: 'store-feature-game-detail',
+          path: 'game/:id',
           loadChildren: () =>
             import('@bg-hoard/store/feature-game-detail').then(
               (module) => module.StoreFeatureGameDetailModule
