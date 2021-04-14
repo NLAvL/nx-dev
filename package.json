@@ -26,7 +26,9 @@
     "help": "nx help"
   },
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "@nrwl/angular": "^12.0.4"
+  },
   "devDependencies": {
     "@nrwl/cli": "11.0.20",
     "@nrwl/tao": "11.0.20",
