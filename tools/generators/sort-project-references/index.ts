@@ -7,11 +7,21 @@ import {
 
 export default async function (host: Tree) {
   await updateJson(host, 'workspace.json', (workspaceJson) => {
-    workspaceJson.defaultProject = 'api';
+    workspaceJson.projects = sortObjectKeys(workspaceJson.projects);
     return workspaceJson;
   });
   await formatFiles(host);
   return () => {
     installPackagesTask(host);
   };
+}
+
+function sortObjectKeys(obj: any) {
+  const sorted = {};
+  Object.keys(obj)
+    .sort()
+    .forEach((key) => {
+      sorted[key] = obj[key];
+    });
+  return sorted;
 }
