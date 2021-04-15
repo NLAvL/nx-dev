@@ -1,19 +1,10 @@
-import {
-  formatFiles,
-  installPackagesTask,
-  Tree,
-  updateJson,
-} from '@nrwl/devkit';
+import { formatFiles, Tree, updateJson } from '@nrwl/devkit';
 
-export default async function (host: Tree) {
-  await updateJson(host, 'workspace.json', (workspaceJson) => {
-    workspaceJson.projects = sortObjectKeys(workspaceJson.projects);
-    return workspaceJson;
+function sortKeys(host: Tree, file: string) {
+  updateJson(host, file, (json) => {
+    json.projects = sortObjectKeys(json.projects);
+    return json;
   });
-  await formatFiles(host);
-  return () => {
-    installPackagesTask(host);
-  };
 }
 
 function sortObjectKeys(obj: any) {
@@ -24,4 +15,10 @@ function sortObjectKeys(obj: any) {
       sorted[key] = obj[key];
     });
   return sorted;
+}
+
+export default async function (host: Tree) {
+  sortKeys(host, 'workspace.json');
+  sortKeys(host, 'nx.json');
+  await formatFiles(host);
 }
