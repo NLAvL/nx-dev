@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/schema",
-  "id": "my-generator",
+  "cli": "nx",
+  "id": "util-lib",
   "type": "object",
   "properties": {
     "name": {
@@ -10,29 +10,30 @@
         "$source": "argv",
         "index": 0
       }
-    },
-    "type": {
-      "type": "string",
-      "description": "Provide the library type",
-      "x-prompt": {
-        "message": "Which type of library would you like to generate?",
-        "type": "list",
-        "items": [
-          {
-            "value": "data-access",
-            "label": "Data Access"
-          },
-          {
-            "value": "feature",
-            "label": "Feature"
-          },
-          {
-            "value": "state",
-            "label": "State Management"
-          }
-        ]
-      }
     }
   },
-  "required": ["name"]
+  "required": ["name"],
+  "directory": {
+    "type": "string",
+    "description": "The scope of your lib.",
+    "x-prompt": {
+      "message": "Which directory do you want the lib to be in?",
+      "type": "list",
+      "items": [
+        {
+          "value": "store",
+          "label": "store"
+        },
+        {
+          "value": "api",
+          "label": "api"
+        },
+        {
+          "value": "shared",
+          "label": "shared"
+        }
+      ]
+    },
+    "enum": ["store", "api", "shared"]
+  }
 }
