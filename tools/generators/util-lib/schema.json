@@ -1,6 +1,6 @@
 {
-  "cli": "nx",
-  "id": "util-lib",
+  "$schema": "http://json-schema.org/schema",
+  "id": "my-generator",
   "type": "object",
   "properties": {
     "name": {
@@ -9,6 +9,28 @@
       "$default": {
         "$source": "argv",
         "index": 0
+      }
+    },
+    "type": {
+      "type": "string",
+      "description": "Provide the library type",
+      "x-prompt": {
+        "message": "Which type of library would you like to generate?",
+        "type": "list",
+        "items": [
+          {
+            "value": "data-access",
+            "label": "Data Access"
+          },
+          {
+            "value": "feature",
+            "label": "Feature"
+          },
+          {
+            "value": "state",
+            "label": "State Management"
+          }
+        ]
       }
     }
   },
