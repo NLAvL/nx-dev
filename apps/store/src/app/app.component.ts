@@ -13,6 +13,8 @@ export class AppComponent {
   formatRating = formatRating;
   // games = getAllGames();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log('app.component.ts:17 | : ', 'nx affected trigger');
+  }
   games = this.http.get<Game[]>('/api/games');
 }
