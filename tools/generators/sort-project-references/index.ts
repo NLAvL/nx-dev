@@ -2,6 +2,7 @@ import { formatFiles, Tree, updateJson } from '@nrwl/devkit';
 
 function sortKeys(host: Tree, file: string) {
   updateJson(host, file, (json) => {
+    sortTsConfigPaths(host);
     json.projects = sortObjectKeys(json.projects);
     return json;
   });
@@ -21,4 +22,11 @@ export default async function (host: Tree) {
   sortKeys(host, 'workspace.json');
   sortKeys(host, 'nx.json');
   await formatFiles(host);
+}
+
+function sortTsConfigPaths(host: Tree) {
+  updateJson(host, 'tsconfig.base.json', (json) => {
+    json.compilerOptions.paths = sortObjectKeys(json.compilerOptions.paths);
+    return json;
+  });
 }
